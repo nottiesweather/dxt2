@@ -1,7 +1,10 @@
 #!/bin/bash
+now=$(date +"%Y%m%d")
 rm -r /var/spool/bootcd
 bootcdwrite -s
 isohybrid /var/spool/bootcd/cdimage.iso
-notify-send -t 0 "ISO located at /var/spool/bootcd/cdimage.iso"
-notify-send -t 0 "Copy it somewhere as the tool clears the folder on every use"
+cp /var/spool/bootcd/cdimage.iso Desktop/exportiso-$now.iso
+chown 1001:1001 Desktop/*.iso
+notify-send -t 0 "Export complete"
+notify-send -t 0 "Image copied to desktop"
 exit
